@@ -1,21 +1,31 @@
-const containerScacchiera = document.getElementById("container-scacchiera");
+const containerScacchiera = document.getElementById("scacchiera");
 
-for (let a = 1; a <= 10; a++) {
-    const row = document.createElement("div");
-    row.classList.add("row");
-    let bgcolor = "bg-danger";
-    for (let b = 1; b <= 7; b++) {
-        const multipli3 = b % 3 === 0;
-        let bgcolor = "";
+for (let i = 1; i <= 100; i++) {
+    let numero = i;
+    let bgColor = "bg-primary";
+    let multipli3 = i % 3 === 0;
 
-
-        row.innerHTML += `<div class="col g-3">
-                        <div class="ratio ratio-1x1 border ${bgcolor}">
-                            <div></div>
-                        </div>
-                    </div>`;
+    if (multipli3) {
+        bgColor = "bg-success";
+        numero = "frizz";
     }
 
-    containerScacchiera.append(row);
-}
+    let multipli5 = i % 5 === 0;
+    if (multipli5) {
+        bgColor = "bg-warning";
+        numero = "buzz";
+    }
 
+    if (multipli5 && multipli3) {
+        bgColor = "bg-danger";
+        numero = "frizzbuzz";
+    }
+
+    containerScacchiera.innerHTML += `
+                    <div class="p-2">
+                        <div class="ratio ratio-1x1 ${bgColor}">
+                          <div class="d-flex justify-content-center align-items-center fs-3 ">${numero}</div>
+                        </div>
+                    </div>
+                      `;
+}
